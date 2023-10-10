@@ -36,6 +36,13 @@ namespace hangfire_webapi.Controllers
             return Ok($"Job Id: {JobId}, Discount email will be sent to the user after {delay} seconds!");
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult DatabaseUpdate()
+        {
+             RecurringJob.AddOrUpdate(() => Console.WriteLine("Database update is scheduled to be every minute"), Cron.Minutely);
+            return Ok($"Database update initiated");
+        }
 
         public void SendWelcomeEmail(string msg)
         {
