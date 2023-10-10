@@ -44,6 +44,18 @@ namespace hangfire_webapi.Controllers
             return Ok($"Database update initiated");
         }
 
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult UnSubscribe()
+        {
+            int delay = 30;
+            var parentJobId = BackgroundJob.Schedule(() => Console.Write("Unsubscribe requested"), TimeSpan.FromSeconds(delay));
+            BackgroundJob.ContinueJobWith(parentJobId, () => Console.WriteLine("You are unsubscribed"));
+            return Ok($"Confirmation Job created!");
+        }
+
+
         public void SendWelcomeEmail(string msg)
         {
             Console.WriteLine(msg);
