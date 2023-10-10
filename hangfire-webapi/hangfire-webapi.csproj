@@ -5,5 +5,9 @@
     <RootNamespace>hangfire_webapi</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.9" />
+  </ItemGroup>
+
 
 </Project>
